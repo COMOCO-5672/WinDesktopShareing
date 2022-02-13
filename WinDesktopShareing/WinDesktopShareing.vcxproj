@@ -126,9 +126,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="OverLay.cpp" />
     <ClCompile Include="ScreenLive.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="OverLay.h" />
     <ClInclude Include="ScreenLive.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
