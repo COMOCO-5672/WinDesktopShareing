@@ -1,6 +1,6 @@
 ﻿#include "ScreenLive.h"
 
-ScreenLive::ScreenLive():eve
+ScreenLive::ScreenLive()
 {
     
 }
