@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="OverLay.cpp" />
+    <ClCompile Include="ScreenLive.cpp" />
+    <ClCompile Include="net\EventLoop.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\Timer.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\TaskScheduler.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="OverLay.h" />
+    <ClInclude Include="ScreenLive.h" />
+    <ClInclude Include="net\EventLoop.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\Timer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\TaskScheduler.h">
+      <Filter>net</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="net">
+      <UniqueIdentifier>{5954441c-8a0f-4026-8b10-fdb233045030}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
