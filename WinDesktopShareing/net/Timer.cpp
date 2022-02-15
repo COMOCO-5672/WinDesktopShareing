@@ -41,14 +41,13 @@ int64_t TimerQueue::GetTimeRemaining()
 {
     std::lock_guard<std::mutex> locker(mutex_);
 
-    if (timers_.empty()) {
+    if (timers_.empty())
         return -1;
-    }
 
     int64_t msec = events_.begin()->first.first - GetTimeNow();
-    if (msec < 0) {
+    if (msec < 0)
         msec = 0;
-    }
+
     return msec;
 }
 

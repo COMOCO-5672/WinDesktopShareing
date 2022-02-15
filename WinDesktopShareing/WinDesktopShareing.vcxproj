@@ -128,7 +128,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="net\Channel.cpp" />
     <ClCompile Include="net\EventLoop.cpp" />
+    <ClCompile Include="net\Socket.cpp" />
     <ClCompile Include="net\TaskScheduler.cpp" />
     <ClCompile Include="net\Timer.cpp" />
     <ClCompile Include="OverLay.cpp" />
@@ -136,7 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="net\Channel.h" />
     <ClInclude Include="net\EventLoop.h" />
+    <ClInclude Include="net\Socket.h" />
     <ClInclude Include="net\TaskScheduler.h" />
     <ClInclude Include="net\Timer.h" />
     <ClInclude Include="OverLay.h" />

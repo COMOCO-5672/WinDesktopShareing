@@ -14,6 +14,12 @@
     <ClCompile Include="net\TaskScheduler.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="net\Channel.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\Socket.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
@@ -26,6 +32,12 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\TaskScheduler.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\Channel.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\Socket.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>
