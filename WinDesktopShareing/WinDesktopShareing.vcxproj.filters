@@ -17,7 +17,7 @@
     <ClCompile Include="net\Channel.cpp">
       <Filter>net</Filter>
     </ClCompile>
-    <ClCompile Include="net\Socket.cpp">
+    <ClCompile Include="net\SocketUtil.cpp">
       <Filter>net</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,6 +38,9 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\Socket.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\SocketUtil.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

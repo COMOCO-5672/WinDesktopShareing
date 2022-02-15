@@ -1,4 +1,4 @@
-#ifndef XOP_SOCKET_H
+﻿#ifndef XOP_SOCKET_H
 #define XOP_SOCKET_H
 
 #if defined(__linux) || defined (__linux__)
@@ -36,11 +36,11 @@
 #define SHUT_WR 1
 #define SHUT_RDWR 2
 
+#else
 
 #endif
 
-class Socket {
-
-};
+#include <cstdint>
+#include <cstring>
 #endif
 
