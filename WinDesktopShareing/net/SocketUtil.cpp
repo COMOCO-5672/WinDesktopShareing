@@ -118,3 +118,59 @@ std::string SocketUtil::GetSocketIp(SOCKET sockfd)
     return str;
 }
 
+uint16_t SocketUtil::GetPeerPort(SOCKET sockfd)
+{
+    struct sockaddr_in addr = { 0 };
+    socklen_t addrlen = sizeof(struct sockaddr_in);
+    if (getpeername(sockfd, (struct sockaddr *)&addr, &addrlen) == 0) {
+        return ntohs(addr.sin_port);
+    }
+    return 0;
+}
+
+int SocketUtil::GetPeerAddr(SOCKET sockfd, struct sockaddr_in *addr)
+{
+    socklen_t addrlen = sizeof(struct sockaddr_in);
+    return getpeername(sockfd,(struct sockaddr *)&addr, &addrlen);
+}
+
+void SocketUtil::Close(SOCKET sockfd)
+{
+#if defined(__linux) || defined(__linux__)
+    ::close(sockfd);
+#elif defined(WIN32)||defined(_WIN32)
+    ::closesocket(sockfd);
+#endif // defined(__linux) || defined(__linux__)
+}
+
+bool SocketUtil::Connect(SOCKET sockfd, std::string ip, uint16_t port, int timeout)
+{
+    bool is_connected = true;
+    if (timeout > 0) {
+        SocketUtil::SetNonBlock(sockfd);
+    }
+
+    struct sockaddr_in addr = { 0 };
+    socklen_t addrlen = sizeof(addr);
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(port);
+    addr.sin_addr.s_addr = inet_addr(ip.c_str());
+    if (::connect(sockfd, (struct sockaddr*)&addr, addrlen) == SOCKET_ERROR)
+    {
+        if (timeout > 0) {
+            is_connected = false;
+            fd_set fd_write;
+            FD_ZERO(&fd_write);
+            FD_SET(sockfd, &fd_write);
+            struct timeval tv = { timeout / 1000,timeout % 1000 * 1000 };
+            if (FD_ISSET(sockfd, &fd_write)) {
+                is_connected = true;
+            }
+            SocketUtil::SetBlock(sockfd);
+        } else {
+            is_connected = false;
+        }
+    }
+    return is_connected;
+}
+

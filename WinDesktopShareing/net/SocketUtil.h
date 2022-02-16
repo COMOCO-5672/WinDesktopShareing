@@ -24,7 +24,7 @@ namespace xop
         static int GetSocketAddr(SOCKET sockfd, struct sockaddr_in *addr);
         static uint16_t GetPeerPort(SOCKET sockfd);
         static int GetPeerAddr(SOCKET sockfd, struct  sockaddr_in *addr);
-        static void Close();
+        static void Close(SOCKET sockfd);
         static bool Connect(SOCKET sockfd, std::string ip, uint16_t port, int timeout = 0);
     };
 }

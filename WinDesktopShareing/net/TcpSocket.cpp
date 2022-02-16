@@ -27,8 +27,9 @@ bool TcpSocket::Bind(std::string ip, uint16_t port)
     addr.sin_addr.s_addr = inet_addr(ip.c_str());
     addr.sin_port = htons(port);
     if (::bind(sockfd_, (struct sockaddr*)&addr, sizeof(addr)) == SOCKET_ERROR) {
-
+        return false;
     }
+    return true;
 }
 
 
