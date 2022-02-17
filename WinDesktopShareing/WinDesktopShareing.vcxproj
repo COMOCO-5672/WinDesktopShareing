@@ -129,10 +129,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="net\Acceptor.cpp" />
+    <ClCompile Include="net\BufferReader.cpp" />
+    <ClCompile Include="net\BufferWriter.cpp" />
     <ClCompile Include="net\Channel.cpp" />
     <ClCompile Include="net\EventLoop.cpp" />
     <ClCompile Include="net\SocketUtil.cpp" />
     <ClCompile Include="net\TaskScheduler.cpp" />
+    <ClCompile Include="net\TcpConnection.cpp" />
+    <ClCompile Include="net\TcpServer.cpp" />
     <ClCompile Include="net\TcpSocket.cpp" />
     <ClCompile Include="net\Timer.cpp" />
     <ClCompile Include="OverLay.cpp" />
@@ -141,11 +145,15 @@
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="net\Acceptor.h" />
+    <ClInclude Include="net\BufferReader.h" />
+    <ClInclude Include="net\BufferWriter.h" />
     <ClInclude Include="net\Channel.h" />
     <ClInclude Include="net\EventLoop.h" />
     <ClInclude Include="net\Socket.h" />
     <ClInclude Include="net\SocketUtil.h" />
     <ClInclude Include="net\TaskScheduler.h" />
+    <ClInclude Include="net\TcpConnection.h" />
+    <ClInclude Include="net\TcpServer.h" />
     <ClInclude Include="net\TcpSocket.h" />
     <ClInclude Include="net\Timer.h" />
     <ClInclude Include="OverLay.h" />

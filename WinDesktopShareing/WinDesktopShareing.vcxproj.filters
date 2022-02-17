@@ -26,6 +26,18 @@
     <ClCompile Include="net\TcpSocket.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="net\TcpServer.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\TcpConnection.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\BufferReader.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\BufferWriter.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
@@ -53,6 +65,18 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\TcpSocket.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\TcpServer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\TcpConnection.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\BufferReader.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\BufferWriter.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>
