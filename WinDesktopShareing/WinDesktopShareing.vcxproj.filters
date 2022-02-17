@@ -38,6 +38,9 @@
     <ClCompile Include="net\BufferWriter.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="net\Pipe.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
@@ -77,6 +80,12 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\BufferWriter.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\Pipe.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\RingBuffer.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

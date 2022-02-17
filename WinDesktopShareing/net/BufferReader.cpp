@@ -1,4 +1,4 @@
-#include "BufferReader.h"
+﻿#include "BufferReader.h"
 #include "Socket.h"
 
 using namespace xop;
@@ -43,3 +43,47 @@ uint16_t xop::ReadUint16LE(char* data)
     uint16_t value = (p[1] << 8) | p[0];
     return value;
 }
+
+const char BufferReader::kCRLF[] = "\r\n";
+
+BufferReader::BufferReader(uint32_t initial_size)
+{
+    buffer_.resize(initial_size);
+}
+
+BufferReader::~BufferReader()
+{
+
+}
+
+int BufferReader::Read(SOCKET sockfd)
+{
+    uint32_t size = WriteableBytes();
+    if (size < MAX_BYTES_PER_READ) {
+        uint32_t bufferReaderSize = (uint32_t)buffer_.size();
+        if (bufferReaderSize > MAX_BUFFER_SIZE)
+            return 0;
+        buffer_.resize(bufferReaderSize + MAX_BYTES_PER_READ);
+    }
+
+    int bytes_read = ::recv(sockfd, beginWrite(), MAX_BYTES_PER_READ, 0);
+    if (bytes_read > 0)
+        writer_index_ += bytes_read;
+
+    return bytes_read;
+}
+
+uint32_t BufferReader::ReadAll(std::string& data)
+{
+    const char *crlf = FindLastCrlf();
+    if (crlf == nullptr)
+        return 0;
+
+    uint32_t size = (uint32_t)(crlf - Peek() + 2);
+    data.assign(Peek(), size);
+    Retrieve(size);
+    return size;
+}
+
+
+

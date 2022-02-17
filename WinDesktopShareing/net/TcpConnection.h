@@ -1,4 +1,4 @@
-#ifndef XOP_TCP_CONNECTION_H
+﻿#ifndef XOP_TCP_CONNECTION_H
 #define XOP_TCP_CONNECTION_H
 
 #include "TaskScheduler.h"
@@ -15,7 +15,9 @@ namespace xop
         using Ptr = std::shared_ptr<TcpConnection>;
         using DisconnectCallback = std::function<void(std::shared_ptr<TcpConnection> conn)>;
         using CloseCallback = std::function<void(std::shared_ptr<TcpConnection> conn)>;
-        using ReadCallback = std::function<bool(std::shared_ptr<TcpConnection> conn, xop:)>;
+        using ReadCallback = std::function<bool(std::shared_ptr<TcpConnection> conn, xop::BufferReader &buffer)>;
+
+        TcpConnection();
     };
 }
 

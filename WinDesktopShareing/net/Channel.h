@@ -1,4 +1,4 @@
-#ifndef XOP_CHANNEL_H
+﻿#ifndef XOP_CHANNEL_H
 #define XOP_CHANNEL_H
 
 #include <functional>
@@ -115,6 +115,8 @@ namespace xop {
         SOCKET sockfd_ = 0;
         int events_ = 0;
     };
+
+    typedef std::shared_ptr<Channel> ChannelPtr;
 }
 
 #endif
