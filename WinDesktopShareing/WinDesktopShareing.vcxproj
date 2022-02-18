@@ -134,6 +134,7 @@
     <ClCompile Include="net\Channel.cpp" />
     <ClCompile Include="net\EventLoop.cpp" />
     <ClCompile Include="net\Pipe.cpp" />
+    <ClCompile Include="net\SelectTaskScheduler.cpp" />
     <ClCompile Include="net\SocketUtil.cpp" />
     <ClCompile Include="net\TaskScheduler.cpp" />
     <ClCompile Include="net\TcpConnection.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="net\EventLoop.h" />
     <ClInclude Include="net\Pipe.h" />
     <ClInclude Include="net\RingBuffer.h" />
+    <ClInclude Include="net\SelectTaskScheduler.h" />
     <ClInclude Include="net\Socket.h" />
     <ClInclude Include="net\SocketUtil.h" />
     <ClInclude Include="net\TaskScheduler.h" />

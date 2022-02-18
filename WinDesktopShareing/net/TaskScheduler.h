@@ -31,7 +31,7 @@ namespace xop {
             return id_;
         }
 
-    private:
+    protected:
         void Wake();
         void HandleTriggerEvent();
 

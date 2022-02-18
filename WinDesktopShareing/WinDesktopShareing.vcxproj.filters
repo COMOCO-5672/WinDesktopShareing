@@ -41,6 +41,9 @@
     <ClCompile Include="net\Pipe.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="net\SelectTaskScheduler.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
@@ -86,6 +89,9 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\RingBuffer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\SelectTaskScheduler.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>
