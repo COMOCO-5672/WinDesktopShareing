@@ -44,6 +44,171 @@
     <ClCompile Include="net\SelectTaskScheduler.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="capture\AudioCapture\AudioCapture.cpp">
+      <Filter>capture\AudioCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\AudioCapture\WASAPICapture.cpp">
+      <Filter>capture\AudioCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\AudioCapture\WASAPIPlayer.cpp">
+      <Filter>capture\AudioCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\ScreenCapture\DXGIScreenCapture.cpp">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\ScreenCapture\GDIScreenCapture.cpp">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\ScreenCapture\ScreenCapture.cpp">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\ScreenCapture\WindowHelper.cpp">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\avcodec\aac_encoder.cpp">
+      <Filter>codec\avcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\avcodec\audio_resampler.cpp">
+      <Filter>codec\avcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\avcodec\h264_encoder.cpp">
+      <Filter>codec\avcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\avcodec\video_converter.cpp">
+      <Filter>codec\avcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\common_directx9.cpp">
+      <Filter>codec\qsvcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\common_directx11.cpp">
+      <Filter>codec\qsvcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\common_utils.cpp">
+      <Filter>codec\qsvcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\common_utils_windows.cpp">
+      <Filter>codec\qsvcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\QsvEncoder.cpp">
+      <Filter>codec\qsvcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_critical_section.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_dispatcher.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_dispatcher_log.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_dxva2_device.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_function_table.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_library_iterator.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_load_dll.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_load_plugin.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_plugin_hive.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\mfx_win_reg_key.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\QsvCodec\src\qsv_main.cpp">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\NvCodec\nvenc.cpp">
+      <Filter>codec\nvcodec</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoder.cpp">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderCuda.cpp">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderD3D9.cpp">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderD3D11.cpp">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClCompile>
+    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderGL.cpp">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\AACSource.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\amf.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\DigestAuthentication.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\G711ASource.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\H264Parser.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\H264Source.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\H265Source.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\HttpFlvConnection.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\HttpFlvServer.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\MediaSession.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpChunk.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpClient.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpConnection.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpHandshake.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpPublisher.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpServer.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtmpSession.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtpConnection.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtspConnection.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtspMessage.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtspPusher.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="xop\RtspServer.cpp">
+      <Filter>xop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
@@ -94,10 +259,247 @@
     <ClInclude Include="net\SelectTaskScheduler.h">
       <Filter>net</Filter>
     </ClInclude>
+    <ClInclude Include="capture\AudioCapture\AudioBuffer.h">
+      <Filter>capture\AudioCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\AudioCapture\AudioCapture.h">
+      <Filter>capture\AudioCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\AudioCapture\WASAPICapture.h">
+      <Filter>capture\AudioCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\AudioCapture\WASAPIPlayer.h">
+      <Filter>capture\AudioCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\ScreenCapture\DXGIScreenCapture.h">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\ScreenCapture\GDIScreenCapture.h">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\ScreenCapture\ScreenCapture.h">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\ScreenCapture\WindowHelper.h">
+      <Filter>capture\ScreenCapture</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\avcodec\aac_encoder.h">
+      <Filter>codec\avcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\avcodec\audio_resampler.h">
+      <Filter>codec\avcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\avcodec\av_common.h">
+      <Filter>codec\avcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\avcodec\av_encoder.h">
+      <Filter>codec\avcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\avcodec\h264_encoder.h">
+      <Filter>codec\avcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\avcodec\video_converter.h">
+      <Filter>codec\avcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\common_directx9.h">
+      <Filter>codec\qsvcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\common_directx11.h">
+      <Filter>codec\qsvcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\common_utils.h">
+      <Filter>codec\qsvcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\QsvEncoder.h">
+      <Filter>codec\qsvcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_critical_section.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_dispatcher.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_dispatcher_defs.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_dispatcher_log.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_dxva2_device.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_exposed_functions_list.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_library_iterator.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_load_dll.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_load_plugin.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_plugin_hive.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_vector.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfx_win_reg_key.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\QsvCodec\src\mfxaudio_exposed_functions_list.h">
+      <Filter>codec\qsvcodec\src</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\encoder_info.h">
+      <Filter>codec\nvcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\nvenc.h">
+      <Filter>codec\nvcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\NvEncoder\nvEncodeAPI.h">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoder.h">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderCuda.h">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderD3D9.h">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderD3D11.h">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClInclude>
+    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderGL.h">
+      <Filter>codec\nvcodec\nvencoder</Filter>
+    </ClInclude>
+    <ClInclude Include="md5\md5.hpp">
+      <Filter>md5</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\AACSource.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\amf.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\DigestAuthentication.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\G711ASource.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\H264Parser.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\H264Source.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\H265Source.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\HttpFlvConnection.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\HttpFlvServer.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\media.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\MediaSession.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\MediaSource.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\rtmp.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpChunk.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpClient.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpConnection.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpHandshake.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpMessage.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpPublisher.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpServer.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtmpSession.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\rtp.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtpConnection.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\rtsp.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtspConnection.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtspMessage.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtspPusher.h">
+      <Filter>xop</Filter>
+    </ClInclude>
+    <ClInclude Include="xop\RtspServer.h">
+      <Filter>xop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="net">
       <UniqueIdentifier>{5954441c-8a0f-4026-8b10-fdb233045030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="capture">
+      <UniqueIdentifier>{98365231-1ba0-4e5f-a806-4c43a7089308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="capture\AudioCapture">
+      <UniqueIdentifier>{1fbd86cb-7c20-46b2-8b14-098ac2e9ba94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="capture\ScreenCapture">
+      <UniqueIdentifier>{59bde3c7-9a58-4f1a-9f80-7aa52b65ae0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="codec">
+      <UniqueIdentifier>{cc12e191-c0f1-4e8f-a18a-b0de1b0bcf38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="codec\avcodec">
+      <UniqueIdentifier>{7646d516-6304-43a4-9fe4-baf1910439ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="codec\nvcodec">
+      <UniqueIdentifier>{fb480103-5333-4a9e-a353-70f88df566cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="codec\qsvcodec">
+      <UniqueIdentifier>{b2553130-c4f7-4240-9db2-ff16680e5ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="codec\qsvcodec\src">
+      <UniqueIdentifier>{1804d5da-fadb-4cb0-b7f9-a647fbd409a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="codec\nvcodec\nvencoder">
+      <UniqueIdentifier>{421b3f89-2808-4b9f-b34e-47015006979b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="md5">
+      <UniqueIdentifier>{2ef27d1b-d9b7-43fd-9958-de8d90727793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xop">
+      <UniqueIdentifier>{784dc67e-9e25-47c2-8283-fd7aeb413866}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

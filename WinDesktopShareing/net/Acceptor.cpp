@@ -34,9 +34,12 @@ int Acceptor::Listen(std::string ip, uint16_t port)
         return -1;
     }
 
+    if (!tcp_socket_->Listen(1024))
+        return -1;
+
     channel_ptr_->SetReadCallback([this] {
         this->OnAccept();
-    });
+        });
     channel_ptr_->EnableReading();
     event_loop_->UpdateChannel(channel_ptr_);
     return 0;
@@ -59,7 +62,8 @@ void Acceptor::OnAccept()
     if (socket > 0) {
         if (new_connection_callback_) {
             new_connection_callback_(socket);
-        } else {
+        }
+        else {
             SocketUtil::Close(socket);
         }
     }
