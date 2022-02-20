@@ -59,14 +59,14 @@ public:
 
     bool Init(AVConfig &config);
     void Destory();
-    bool IsInitialized() { return m_bInited_; }
+    bool IsInitialized() { return is_initialized_; }
 
     int StartCapture();
     int StopCapture();
 
     int StartEncoder(AVConfig &config);
     int StopEncoder();
-    bool IsEncoderInited() { return m_bEncoderInited_; };
+    bool IsEncoderInited() { return is_encoder_started_; };
 
     bool StartLive(int type, LiveConfig &config);
     void StopLive(int type);

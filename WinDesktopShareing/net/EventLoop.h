@@ -1,11 +1,13 @@
-#ifndef XOP_EVENT_LOOP_H
+﻿#ifndef XOP_EVENT_LOOP_H
 #define XOP_EVENT_LOOP_H
 
 #include <stdint.h>
 #include <memory>
 #include <thread>
 #include <functional>
-#include "TaskScheduler.h"
+
+#include "SelectTaskScheduler.h"
+#include "Timer.h"
 
 #define TASK_SCHEDULER_PRIORITY_LOW       0
 #define TASK_SCHEDULER_PRIORITY_NORMAL    1

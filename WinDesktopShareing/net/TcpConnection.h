@@ -37,7 +37,7 @@ namespace xop {
         void Send(const char *data, uint32_t size);
 
         void Disconnect();
-        bool IsClose() const
+        bool IsClosed() const
         {
             return is_closed_;
         }

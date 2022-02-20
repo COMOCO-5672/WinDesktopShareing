@@ -131,16 +131,7 @@
     <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoder.cpp">
       <Filter>codec\nvcodec\nvencoder</Filter>
     </ClCompile>
-    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderCuda.cpp">
-      <Filter>codec\nvcodec\nvencoder</Filter>
-    </ClCompile>
-    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderD3D9.cpp">
-      <Filter>codec\nvcodec\nvencoder</Filter>
-    </ClCompile>
     <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderD3D11.cpp">
-      <Filter>codec\nvcodec\nvencoder</Filter>
-    </ClCompile>
-    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderGL.cpp">
       <Filter>codec\nvcodec\nvencoder</Filter>
     </ClCompile>
     <ClCompile Include="xop\AACSource.cpp">
@@ -208,6 +199,156 @@
     </ClCompile>
     <ClCompile Include="xop\RtspServer.cpp">
       <Filter>xop</Filter>
+    </ClCompile>
+    <ClCompile Include="net\Logger.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\Timestamp.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_common.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_gcc.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_mmi.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_msa.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_neon.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_neon64.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\compare_win.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert_argb.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert_from.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert_from_argb.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert_jpeg.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert_to_argb.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\convert_to_i420.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\cpu_id.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\mjpeg_decoder.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\mjpeg_validate.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\planar_functions.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_any.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_argb.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_common.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_gcc.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_mmi.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_msa.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_neon.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_neon64.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\rotate_win.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_any.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_common.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_gcc.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_mmi.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_msa.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_neon.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_neon64.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\row_win.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_any.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_argb.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_common.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_gcc.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_mmi.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_msa.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_neon.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_neon64.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\scale_win.cc">
+      <Filter>libyuv\source</Filter>
+    </ClCompile>
+    <ClCompile Include="libyuv\source\video_common.cc">
+      <Filter>libyuv\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -364,16 +505,7 @@
     <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoder.h">
       <Filter>codec\nvcodec\nvencoder</Filter>
     </ClInclude>
-    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderCuda.h">
-      <Filter>codec\nvcodec\nvencoder</Filter>
-    </ClInclude>
-    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderD3D9.h">
-      <Filter>codec\nvcodec\nvencoder</Filter>
-    </ClInclude>
     <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderD3D11.h">
-      <Filter>codec\nvcodec\nvencoder</Filter>
-    </ClInclude>
-    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderGL.h">
       <Filter>codec\nvcodec\nvencoder</Filter>
     </ClInclude>
     <ClInclude Include="md5\md5.hpp">
@@ -463,6 +595,18 @@
     <ClInclude Include="xop\RtspServer.h">
       <Filter>xop</Filter>
     </ClInclude>
+    <ClInclude Include="net\Logger.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\Timestamp.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\log.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="libyuv\include\libyuv.h">
+      <Filter>libyuv\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="net">
@@ -500,6 +644,15 @@
     </Filter>
     <Filter Include="xop">
       <UniqueIdentifier>{784dc67e-9e25-47c2-8283-fd7aeb413866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libyuv">
+      <UniqueIdentifier>{0f5372e9-a7ef-4d77-aa21-d8a1516ef837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libyuv\include">
+      <UniqueIdentifier>{e8cf2ded-023a-4d59-817a-12e117770bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libyuv\source">
+      <UniqueIdentifier>{31b53333-00d2-4d22-8129-21fb88786e03}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

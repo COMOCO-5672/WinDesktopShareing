@@ -76,7 +76,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(projectdir)..\libs\ffmpeg\include;$(projectdir)..\libs\glfw\include;$(projectdir)..\libs\SDL2\include;$(projectdir)..\libs\gl3w\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectdir)..\libs\ffmpeg\include;$(projectdir)..\libs\glfw\include;$(projectdir)..\libs\SDL2\include;$(projectdir)..\libs\gl3w\GL;$(ProjectDir);$(ProjectDir)capture;$(ProjectDir)codec;$(ProjectDir)codec\avcodec;$(ProjectDir)codec\nvcodec;$(ProjectDir)codec\qsvcodec\include;$(ProjectDir)libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,10 +140,7 @@
     <ClCompile Include="codec\avcodec\video_converter.cpp" />
     <ClCompile Include="codec\NvCodec\nvenc.cpp" />
     <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoder.cpp" />
-    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderCuda.cpp" />
     <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderD3D11.cpp" />
-    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderD3D9.cpp" />
-    <ClCompile Include="codec\NvCodec\NvEncoder\NvEncoderGL.cpp" />
     <ClCompile Include="codec\QsvCodec\common_directx11.cpp" />
     <ClCompile Include="codec\QsvCodec\common_directx9.cpp" />
     <ClCompile Include="codec\QsvCodec\common_utils.cpp" />
@@ -159,6 +157,54 @@
     <ClCompile Include="codec\QsvCodec\src\mfx_plugin_hive.cpp" />
     <ClCompile Include="codec\QsvCodec\src\mfx_win_reg_key.cpp" />
     <ClCompile Include="codec\QsvCodec\src\qsv_main.cpp" />
+    <ClCompile Include="libyuv\source\compare.cc" />
+    <ClCompile Include="libyuv\source\compare_common.cc" />
+    <ClCompile Include="libyuv\source\compare_gcc.cc" />
+    <ClCompile Include="libyuv\source\compare_mmi.cc" />
+    <ClCompile Include="libyuv\source\compare_msa.cc" />
+    <ClCompile Include="libyuv\source\compare_neon.cc" />
+    <ClCompile Include="libyuv\source\compare_neon64.cc" />
+    <ClCompile Include="libyuv\source\compare_win.cc" />
+    <ClCompile Include="libyuv\source\convert.cc" />
+    <ClCompile Include="libyuv\source\convert_argb.cc" />
+    <ClCompile Include="libyuv\source\convert_from.cc" />
+    <ClCompile Include="libyuv\source\convert_from_argb.cc" />
+    <ClCompile Include="libyuv\source\convert_jpeg.cc" />
+    <ClCompile Include="libyuv\source\convert_to_argb.cc" />
+    <ClCompile Include="libyuv\source\convert_to_i420.cc" />
+    <ClCompile Include="libyuv\source\cpu_id.cc" />
+    <ClCompile Include="libyuv\source\mjpeg_decoder.cc" />
+    <ClCompile Include="libyuv\source\mjpeg_validate.cc" />
+    <ClCompile Include="libyuv\source\planar_functions.cc" />
+    <ClCompile Include="libyuv\source\rotate.cc" />
+    <ClCompile Include="libyuv\source\rotate_any.cc" />
+    <ClCompile Include="libyuv\source\rotate_argb.cc" />
+    <ClCompile Include="libyuv\source\rotate_common.cc" />
+    <ClCompile Include="libyuv\source\rotate_gcc.cc" />
+    <ClCompile Include="libyuv\source\rotate_mmi.cc" />
+    <ClCompile Include="libyuv\source\rotate_msa.cc" />
+    <ClCompile Include="libyuv\source\rotate_neon.cc" />
+    <ClCompile Include="libyuv\source\rotate_neon64.cc" />
+    <ClCompile Include="libyuv\source\rotate_win.cc" />
+    <ClCompile Include="libyuv\source\row_any.cc" />
+    <ClCompile Include="libyuv\source\row_common.cc" />
+    <ClCompile Include="libyuv\source\row_gcc.cc" />
+    <ClCompile Include="libyuv\source\row_mmi.cc" />
+    <ClCompile Include="libyuv\source\row_msa.cc" />
+    <ClCompile Include="libyuv\source\row_neon.cc" />
+    <ClCompile Include="libyuv\source\row_neon64.cc" />
+    <ClCompile Include="libyuv\source\row_win.cc" />
+    <ClCompile Include="libyuv\source\scale.cc" />
+    <ClCompile Include="libyuv\source\scale_any.cc" />
+    <ClCompile Include="libyuv\source\scale_argb.cc" />
+    <ClCompile Include="libyuv\source\scale_common.cc" />
+    <ClCompile Include="libyuv\source\scale_gcc.cc" />
+    <ClCompile Include="libyuv\source\scale_mmi.cc" />
+    <ClCompile Include="libyuv\source\scale_msa.cc" />
+    <ClCompile Include="libyuv\source\scale_neon.cc" />
+    <ClCompile Include="libyuv\source\scale_neon64.cc" />
+    <ClCompile Include="libyuv\source\scale_win.cc" />
+    <ClCompile Include="libyuv\source\video_common.cc" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="net\Acceptor.cpp" />
@@ -166,6 +212,7 @@
     <ClCompile Include="net\BufferWriter.cpp" />
     <ClCompile Include="net\Channel.cpp" />
     <ClCompile Include="net\EventLoop.cpp" />
+    <ClCompile Include="net\Logger.cpp" />
     <ClCompile Include="net\Pipe.cpp" />
     <ClCompile Include="net\SelectTaskScheduler.cpp" />
     <ClCompile Include="net\SocketUtil.cpp" />
@@ -174,6 +221,7 @@
     <ClCompile Include="net\TcpServer.cpp" />
     <ClCompile Include="net\TcpSocket.cpp" />
     <ClCompile Include="net\Timer.cpp" />
+    <ClCompile Include="net\Timestamp.cpp" />
     <ClCompile Include="OverLay.cpp" />
     <ClCompile Include="ScreenLive.cpp" />
     <ClCompile Include="xop\AACSource.cpp" />
@@ -218,10 +266,7 @@
     <ClInclude Include="codec\NvCodec\nvenc.h" />
     <ClInclude Include="codec\NvCodec\NvEncoder\nvEncodeAPI.h" />
     <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoder.h" />
-    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderCuda.h" />
     <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderD3D11.h" />
-    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderD3D9.h" />
-    <ClInclude Include="codec\NvCodec\NvEncoder\NvEncoderGL.h" />
     <ClInclude Include="codec\QsvCodec\common_directx11.h" />
     <ClInclude Include="codec\QsvCodec\common_directx9.h" />
     <ClInclude Include="codec\QsvCodec\common_utils.h" />
@@ -239,6 +284,7 @@
     <ClInclude Include="codec\QsvCodec\src\mfx_plugin_hive.h" />
     <ClInclude Include="codec\QsvCodec\src\mfx_vector.h" />
     <ClInclude Include="codec\QsvCodec\src\mfx_win_reg_key.h" />
+    <ClInclude Include="libyuv\include\libyuv.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="md5\md5.hpp" />
     <ClInclude Include="net\Acceptor.h" />
@@ -246,6 +292,8 @@
     <ClInclude Include="net\BufferWriter.h" />
     <ClInclude Include="net\Channel.h" />
     <ClInclude Include="net\EventLoop.h" />
+    <ClInclude Include="net\log.h" />
+    <ClInclude Include="net\Logger.h" />
     <ClInclude Include="net\Pipe.h" />
     <ClInclude Include="net\RingBuffer.h" />
     <ClInclude Include="net\SelectTaskScheduler.h" />
@@ -256,6 +304,7 @@
     <ClInclude Include="net\TcpServer.h" />
     <ClInclude Include="net\TcpSocket.h" />
     <ClInclude Include="net\Timer.h" />
+    <ClInclude Include="net\Timestamp.h" />
     <ClInclude Include="OverLay.h" />
     <ClInclude Include="ScreenLive.h" />
     <ClInclude Include="xop\AACSource.h" />

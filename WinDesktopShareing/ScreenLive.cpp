@@ -357,9 +357,23 @@ void ScreenLive::PushVideo(const uint8_t* data, uint32_t size, uint32_t timestam
     memcpy(video_frame.buffer.get(), data + 4, size - 4);
 
     if (size > 0) {
+        std::lock_guard<std::mutex> locker(mutex_);
 
+        /* RTSP 服务器 */
+        if (rtsp_server_ != nullptr && this->rtsp_clients_.size() > 0) {
+            rtsp_server_->PushFrame(media_session_id_, xop::channel_0, video_frame);
+        }
+
+        /* RTSP推流 */
+        if (rtsp_pusher_ != nullptr && rtsp_pusher_->IsConnected()) {
+            rtsp_pusher_->PushFrame(xop::channel_0, video_frame);
+        }
+
+        /* RTMP推流 */
+        if (rtmp_pusher_ != nullptr && rtmp_pusher_->IsConnected()) {
+            rtmp_pusher_->PushVideoFrame(video_frame.buffer.get(), video_frame.size);
+        }
     }
-
 }
 
 void ScreenLive::PushAudio(const uint8_t* data, uint32_t size, uint32_t timestamp)
@@ -373,12 +387,15 @@ void ScreenLive::PushAudio(const uint8_t* data, uint32_t size, uint32_t timestam
     if (size > 0) {
         std::lock_guard<std::mutex> locker(mutex_);
 
+        /* RTSP 服务器 */
         if (rtsp_server_ != nullptr && this->rtsp_clients_.size() > 0)
             rtsp_server_->PushFrame(media_session_id_, xop::channel_1, audio_frame);
 
+        /* RTSP推流 */
         if (rtsp_pusher_ && rtsp_pusher_->IsConnected())
             rtsp_pusher_->PushFrame(xop::channel_1, audio_frame);
 
+        /* RTMP推流 */
         if (rtmp_pusher_ != nullptr && rtmp_pusher_->IsConnected())
             rtmp_pusher_->PushAudioFrame(audio_frame.buffer.get(), audio_frame.size);
     }
