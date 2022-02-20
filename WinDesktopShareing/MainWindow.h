@@ -13,7 +13,7 @@ public:
     MainWindow();
     virtual ~MainWindow();
 
-    bool create();
+    bool Create();
     void Destory();
     bool IsWindow() const;
     void Resize();
@@ -39,9 +39,25 @@ private:
     std::string debug_info_text_;
 
     AVConfig avconfig_;
-    std::string render_name_;
-    SDL_Renderer *rederer_{ nullptr };
+    std::string renderer_name_;
+    SDL_Renderer *renderer_{ nullptr };
+    SDL_Texture *texture_{ nullptr };
 
+    IDirect3DDevice9 *device_{ nullptr };
+    SDL_GLContext gl_context_{ nullptr };
 
+    int texture_format_ = SDL_PIXELFORMAT_UNKNOWN;
+    uint32_t texture_width_ = 0;
+    uint32_t texture_height_ = 0;
+
+    int window_width_ = 0;
+    int window_height_ = 0;
+    int video_width_ = 0;
+    int video_height_ = 0;
+    int overlay_width_ = 0;
+    int overlay_height_ = 0;
+
+    static const int kMinOverlayWidth = 860;
+    static const int kMinOverlayHeight = 200;
 };
 #endif

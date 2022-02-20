@@ -364,7 +364,7 @@ mfxStatus WriteRawFrame(mfxFrameSurface1* pSurface, FILE* fSink)
     if (pInfo->FourCC == MFX_FOURCC_RGB4 || pInfo->FourCC == MFX_FOURCC_A2RGB10)
     {
         pitch = pData->Pitch;
-        ptr = std::min(std::min(pData->R, pData->G), pData->B);
+        ptr = (std::min)((std::min)(pData->R, pData->G), pData->B);
 
         for (i = 0; i < h; i++)
         {

@@ -1,4 +1,4 @@
-#include "EventLoop.h"
+﻿#include "EventLoop.h"
 
 #if defined(WIN32) || defined(_WIN32)
 #include <Windows.h>
@@ -14,9 +14,9 @@ using namespace xop;
 EventLoop::EventLoop(uint32_t num_threads)
     : index_(1)
 {
-    num_threads = 1;
+    num_threads_ = 1;
     if (num_threads > 0) {
-        num_threads = num_threads;
+        num_threads_ = num_threads;
     }
 
     this->Loop();
@@ -48,7 +48,7 @@ void EventLoop::Loop()
     if (!task_schedulers_.empty()) {
         return;
     }
-    for (uint32_t n = 0; n < num_threads; n++) {
+    for (uint32_t n = 0; n < num_threads_; n++) {
     #if defined(__linux) || defined(__linux__)
         std::shared_ptr<TaskScheduler> task_scheduler_ptr(new EpollTaskScheduler(n));
     #elif defined(WIN32) || defined(_WIN32)

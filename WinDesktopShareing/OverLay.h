@@ -32,7 +32,7 @@ public:
 	bool Init(SDL_Window* window, IDirect3DDevice9* device9);
 	bool Init(SDL_Window* window, SDL_GLContext gl_context);
 
-	void SetRest(int x, int y, int w, int h);
+	void SetRect(int x, int y, int w, int h);
 	void Destory();
 	bool Render();
 

@@ -1,4 +1,4 @@
-#ifndef XOP_TIMER_H
+﻿#ifndef XOP_TIMER_H
 #define XOP_TIMER_H
 
 #include <functional>
@@ -12,7 +12,7 @@ namespace xop {
 
     class Timer {
     public:
-        Timer(const TimerEvent &event, uint32_t msec)
+        Timer(const TimerEvent &event, uint32_t msec):event_callback(event),interval_(msec)
         {
             if (interval_ == 0) {
                 interval_ = 1;
@@ -88,7 +88,6 @@ namespace xop {
 
         std::mutex mutex_;
         std::unordered_map<TimerId, std::shared_ptr<Timer>> timers_;
-
         std::map<std::pair<int64_t, TimerId>, std::shared_ptr<Timer>> events_;
         uint32_t last_timer_id_ = 0;
     };

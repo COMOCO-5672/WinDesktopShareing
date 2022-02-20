@@ -5,7 +5,7 @@
 #include "capture/ScreenCapture/GDIScreenCapture.h"
 #include "VersionHelpers.h"
 
-ScreenLive::ScreenLive() : event_loop_(new xop::EventLoop())
+ScreenLive::ScreenLive() :event_loop_(new xop::EventLoop)
 {
     encoding_fps_ = 0;
     rtsp_clients_.clear();
@@ -99,7 +99,6 @@ void ScreenLive::Destory()
     is_initialized_ = false;
 }
 
-
 bool ScreenLive::StartLive(int type, LiveConfig& config)
 {
     if (!is_encoder_started_)
@@ -162,7 +161,7 @@ bool ScreenLive::StartLive(int type, LiveConfig& config)
         uint8_t extradata[1024] = { 0 };
         int extradata_size = 0;
 
-        extradata_size = acc_encoder_.GetSpecificConfig(extradata, 1024);
+        extradata_size = aac_encoder_.GetSpecificConfig(extradata, 1024);
         if (extradata_size <= 0) {
             printf("Get audio specific config failed");
             return false;
@@ -322,30 +321,162 @@ int ScreenLive::StartCapture()
 
 }
 
+int ScreenLive::StopCapture()
+{
+    if (is_capture_started_) {
+        if (screen_capture_) {
+            screen_capture_->Destroy();
+            delete screen_capture_;
+            screen_capture_ = nullptr;
+        }
+        audio_capture_.Destroy();
+        is_capture_started_ = false;
+    }
+
+    return 0;
+}
+
 int ScreenLive::StartEncoder(AVConfig& config)
 {
+    if (!is_capture_started_) {
+        return -1;
+    }
 
+    av_config_ = config;
+
+    ffmpeg::AVConfig encoder_config;
+    encoder_config.video.framerate = av_config_.framerate;
+    encoder_config.video.bitrate = av_config_.bitrate_bps;
+    encoder_config.video.gop = av_config_.framerate;
+    encoder_config.video.format = AV_PIX_FMT_BGRA;
+    encoder_config.video.width = screen_capture_->GetWidth();
+    encoder_config.video.height = screen_capture_->GetHeight();
+
+    h264_encoder_.SetCodec(config.codec);
+
+    if (!h264_encoder_.Init(av_config_.framerate
+        , av_config_.bitrate_bps / 1000
+        , AV_PIX_FMT_BGRA
+        , screen_capture_->GetWidth()
+        , screen_capture_->GetHeight())) {
+        return -1;
+    }
+
+    int samplerate = audio_capture_.GetSamplerate();
+    int channels = audio_capture_.GetChannels();
+    if (!aac_encoder_.Init(samplerate
+        , channels
+        , AV_SAMPLE_FMT_S16
+        , 64)) {
+        return -1;
+    }
+
+    is_encoder_started_ = true;
+    //encode_video_thread_.reset(new std::thread(&ScreenLive::EncoderVideo, this));
+    //encode_audio_thread_.reset(new std::thread(&ScreenLive::EncoderAudio), this);
+
+    return 0;
 }
 
 int ScreenLive::StopEncoder()
 {
+    if (is_encoder_started_) {
+        is_encoder_started_ = false;
 
+        if (encode_video_thread_) {
+            encode_video_thread_->join();
+            encode_video_thread_ = nullptr;
+        }
+
+        if (encode_audio_thread_) {
+            encode_audio_thread_->join();
+            encode_audio_thread_ = nullptr;
+        }
+
+        h264_encoder_.Destroy();
+        aac_encoder_.Destroy();
+    }
+
+    return 0;
 }
-
 
 bool ScreenLive::IsKeyFrame(const uint8_t* data, uint32_t size)
 {
+    if (size > 4) {
+        if (data[4] == 0x67 || data[4] == 0x65 || data[4] == 0x6 || data[4] == 0x27) {
+            return true;
+        }
+    }
 
+    return false;
 }
 
 void ScreenLive::EncoderVideo()
 {
+    static xop::Timestamp encoding_ts, update_ts;
+    uint32_t encoding_fps = 0;
+    uint32_t msec = 1000 / av_config_.framerate;
 
+    while (is_encoder_started_ && is_capture_started_) {
+        if (update_ts.Elapsed() >= 1000) {
+            update_ts.Reset();
+            encoding_fps_ = encoding_fps;
+            encoding_fps = 0;
+        }
+
+        uint32_t delay = msec;
+        uint32_t elapsed = (uint32_t)encoding_ts.Elapsed();
+        if (elapsed > delay) {
+            delay = 0;
+        }
+        else {
+            delay -= elapsed;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+        encoding_ts.Reset();
+
+        std::vector<uint8_t> bgra_image;
+        uint32_t timestamp = xop::H264Source::GetTimestamp();
+        int frame_size = 0;
+        uint32_t width = 0, height = 0;
+
+        if (screen_capture_->CaptureFrame(bgra_image, width, height)) {
+            std::vector<uint8_t> out_frame;
+            if (h264_encoder_.Encode(&bgra_image[0], width, height, bgra_image.size(), out_frame) > 0) {
+                if (out_frame.size() > 0) {
+                    encoding_fps += 1;
+                    PushVideo(&out_frame[0], out_frame.size(), timestamp);
+                }
+            }
+        }
+    }
+    encoding_fps_ = 0;
 }
 
 void ScreenLive::EncoderAudio()
 {
+    std::shared_ptr<uint8_t> pcm_buffer(new uint8_t[48000 * 8], std::default_delete<uint8_t[]>());
+    uint32_t frame_samples = aac_encoder_.GetFrames();
+    uint32_t channel = audio_capture_.GetChannels();
+    uint32_t samplerate = audio_capture_.GetSamplerate();
 
+    while (is_encoder_started_) {
+        if (audio_capture_.GetSamples() >= (int)frame_samples) {
+
+            if (audio_capture_.Read(pcm_buffer.get(), frame_samples) != frame_samples)
+                continue;
+
+            ffmpeg::AVPacketPtr pkt_ptr = aac_encoder_.Encode(pcm_buffer.get(), frame_samples);
+            if (pkt_ptr) {
+                uint32_t timestamp = xop::AACSource::GetTimestamp(samplerate);
+                PushAudio(pkt_ptr->data, pkt_ptr->size, timestamp);
+            }
+        }
+        else {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        }
+    }
 }
 
 void ScreenLive::PushVideo(const uint8_t* data, uint32_t size, uint32_t timestamp)
@@ -400,6 +531,3 @@ void ScreenLive::PushAudio(const uint8_t* data, uint32_t size, uint32_t timestam
             rtmp_pusher_->PushAudioFrame(audio_frame.buffer.get(), audio_frame.size);
     }
 }
-
-
-
