@@ -15,7 +15,7 @@ TimerId TimerQueue::AddTimer(const TimerEvent& event, uint32_t msec)
     auto timer = make_shared<Timer>(event, msec);
     timer->SetNextTimeout(timeout);
     timers_.emplace(timer_id, timer);
-    timers_.emplace(std::pair<int64_t, TimerId>(timeout + msec, timer_id), std::move(timer));
+    events_.emplace(std::pair<int64_t, TimerId>(timeout + msec, timer_id), std::move(timer));
     return timer_id;
 }
 
@@ -26,7 +26,7 @@ void TimerQueue::RemoveTimer(TimerId timer_id)
     auto iter = timers_.find(timer_id);
     if (iter != timers_.end()) {
         int64_t timeout = iter->second->getNextTimeout();
-        events_.erase(std::pair<int64_t, TimerId>(timeout, timer_id));
+        //events_.erase(std::pair<int64_t, TimerId>(timeout, timer_id));
         timers_.erase(timer_id);
     }
 }
