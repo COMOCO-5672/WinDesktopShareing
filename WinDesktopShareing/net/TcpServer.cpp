@@ -44,7 +44,7 @@ bool TcpServer::Start(std::string ip, uint16_t port)
 
         port_ = port;
         ip_ = ip;
-        is_started_ = false;
+        is_started_ = true;
         return true;
     }
     return false;

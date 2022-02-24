@@ -75,6 +75,18 @@ int BufferReader::Read(SOCKET sockfd)
 
 uint32_t BufferReader::ReadAll(std::string& data)
 {
+    uint32_t size = ReadableBytes();
+    if (size > 0) {
+        data.assign(Peek(), size);
+        writer_index_ = 0;
+        reader_index_ = 0;
+    }
+    return size;
+}
+
+
+uint32_t BufferReader::ReadUntilCrlf(std::string& data)
+{
     const char *crlf = FindLastCrlf();
     if (crlf == nullptr)
         return 0;
@@ -84,6 +96,7 @@ uint32_t BufferReader::ReadAll(std::string& data)
     Retrieve(size);
     return size;
 }
+
 
 
 

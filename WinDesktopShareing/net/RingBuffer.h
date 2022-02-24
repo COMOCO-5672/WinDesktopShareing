@@ -4,11 +4,9 @@
 #include <atomic>
 #include <vector>
 
-namespace xop
-{
+namespace xop {
     template <typename T>
-    class RingBuffer
-    {
+    class RingBuffer {
     public:
         RingBuffer(int capacity = 60)
             :capacity_(capacity)
@@ -18,11 +16,11 @@ namespace xop
 
         }
 
-        virtual ~RingBuffer();
+        virtual ~RingBuffer() {};
 
         bool Push(const T &data)
         {
-            return PushData(std::forward<T>(data));
+            return pushData(std::forward<T>(data));
         }
 
         bool Push(T &&data)
@@ -30,7 +28,7 @@ namespace xop
             return PushData(data);
         }
 
-        bool Pop(T &&data)
+        bool Pop(T &data)
         {
             if (num_datas_ > 0) {
                 data = std::move(buffer_[get_pos_]);
@@ -79,7 +77,7 @@ namespace xop
         int get_pos_ = 0;
 
         std::atomic_int num_datas_;
-        std::vector<T>buffer_;
+        std::vector<T> buffer_;
     };
 }
 

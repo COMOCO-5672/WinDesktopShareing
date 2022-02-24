@@ -7,18 +7,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinDesktopShareing", "WinDe
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Debug|x64.ActiveCfg = Debug|x64
-		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Debug|x64.Build.0 = Debug|x64
 		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Debug|x86.ActiveCfg = Debug|Win32
 		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Debug|x86.Build.0 = Debug|Win32
-		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Release|x64.ActiveCfg = Release|x64
-		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Release|x64.Build.0 = Release|x64
 		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Release|x86.ActiveCfg = Release|Win32
 		{D2C9A430-3EFF-4D0C-A134-A70E444C40BD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection

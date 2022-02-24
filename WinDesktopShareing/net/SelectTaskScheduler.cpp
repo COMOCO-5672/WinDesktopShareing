@@ -34,12 +34,10 @@ void SelectTaskScheduler::UpdateChannel(ChannelPtr channel)
             is_fd_write_reset_ = true;
             is_fd_exp_reset_ = true;
             channels_.erase(socket);
-        }
-        else {
+        } else {
             is_fd_write_reset_ = true;
         }
-    }
-    else {
+    } else {
         if (!channel->IsNoneEvent()) {
             channels_.emplace(socket, channel);
             is_fd_read_reset_ = true;
@@ -117,16 +115,21 @@ bool SelectTaskScheduler::HandleEvent(int timeout)
     if (fd_read_reset) {
         FD_ZERO(&fd_read_backup_);
         memcpy(&fd_read_backup_, &fd_read, sizeof(fd_set));
+    } else {
+        memcpy(&fd_write, &fd_write_backup_, sizeof(fd_set));
     }
-    else {
+
+    if (fd_write_reset) {
+        FD_ZERO(&fd_write_backup_);
+        memcpy(&fd_write_backup_, &fd_write, sizeof(fd_set));
+    } else {
         memcpy(&fd_write, &fd_write_backup_, sizeof(fd_set));
     }
 
     if (fd_exp_reset) {
         FD_ZERO(&fd_exp_backup_);
         memcpy(&fd_exp_backup_, &fd_exp, sizeof(fd_set));
-    }
-    else {
+    } else {
         memcpy(&fd_exp, &fd_exp_backup_, sizeof(fd_set));
     }
 
@@ -141,10 +144,10 @@ bool SelectTaskScheduler::HandleEvent(int timeout)
 
     int ret = select((int)maxfd_ + 1, &fd_read, &fd_write, &fd_exp, &tv);
     if (ret < 0) {
-#if defined(__linux) || defined(__linux__)
+    #if defined(__linux) || defined(__linux__)
         if (errno == EINTR)
             return true;
-#endif
+    #endif
         return false;
     }
 

@@ -15,7 +15,7 @@ std::string Timestamp::Localtime()
     localtime_s(&tm, &tt);
     stream << std::put_time(&tm, "%F %T");
 #elif defined(__linux) || defined(__linux__)
-    char buffer[200] = [0];
+    char buffer[200] = {0};
     std::string timeString;
     std::strftime(buffer, 200, "%F %T", std::localtime(&tt));
     stream << buffer;

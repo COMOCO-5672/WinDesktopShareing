@@ -151,7 +151,7 @@ bool MainWindow::Init()
 void MainWindow::Clear()
 {
     if (overlay_) {
-        overlay_->Destory();
+        overlay_->Destroy();
         delete overlay_;
         overlay_ = nullptr;
     }

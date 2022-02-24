@@ -38,16 +38,16 @@ void SocketUtil::SetBlock(SOCKET fd, int write_timeout)
 #else
 #endif
     if (write_timeout > 0) {
-#ifdef SO_SNDTIMEO
-#if defined(__linux) || defined(__linux__) 
+    #ifdef SO_SNDTIMEO
+    #if defined(__linux) || defined(__linux__) 
         struct timeval tv = { write_timeout / 1000, (write_timeout % 1000) * 1000 };
         setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char*)&tv, sizeof tv);
-#elif defined(WIN32) || defined(_WIN32)
+    #elif defined(WIN32) || defined(_WIN32)
         unsigned long ms = (unsigned long)write_timeout;
         setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char *)&ms, sizeof(unsigned long));
-#else
-#endif		
-#endif
+    #else
+    #endif		
+    #endif
     }
 }
 
@@ -61,7 +61,7 @@ void SocketUtil::SetReusePort(SOCKET sockfd)
 {
 #ifdef SO_REUSEPORT
     int on = 1;
-    int ret = setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, (char *)&on, sizeof(on));
+    setsockopt(sockfd, SOL_SOCKET, SO_REUSEPORT, (const char *)&on, sizeof(on));
 #endif
 }
 
@@ -118,6 +118,12 @@ std::string SocketUtil::GetSocketIp(SOCKET sockfd)
     return str;
 }
 
+int SocketUtil::GetSocketAddr(SOCKET sockfd, sockaddr_in* addr)
+{
+    socklen_t addlen = sizeof(struct  sockaddr_in);
+    return getsockname(sockfd, (struct sockaddr*)addr, &addlen);
+}
+
 uint16_t SocketUtil::GetPeerPort(SOCKET sockfd)
 {
     struct sockaddr_in addr = { 0 };
@@ -131,7 +137,7 @@ uint16_t SocketUtil::GetPeerPort(SOCKET sockfd)
 int SocketUtil::GetPeerAddr(SOCKET sockfd, struct sockaddr_in *addr)
 {
     socklen_t addrlen = sizeof(struct sockaddr_in);
-    return getpeername(sockfd,(struct sockaddr *)&addr, &addrlen);
+    return getpeername(sockfd, (struct sockaddr *)&addr, &addrlen);
 }
 
 void SocketUtil::Close(SOCKET sockfd)
@@ -155,14 +161,14 @@ bool SocketUtil::Connect(SOCKET sockfd, std::string ip, uint16_t port, int timeo
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
     addr.sin_addr.s_addr = inet_addr(ip.c_str());
-    if (::connect(sockfd, (struct sockaddr*)&addr, addrlen) == SOCKET_ERROR)
-    {
+    if (::connect(sockfd, (struct sockaddr*)&addr, addrlen) == SOCKET_ERROR) {
         if (timeout > 0) {
             is_connected = false;
             fd_set fd_write;
             FD_ZERO(&fd_write);
             FD_SET(sockfd, &fd_write);
             struct timeval tv = { timeout / 1000,timeout % 1000 * 1000 };
+            select((int)sockfd + 1, NULL, &fd_write, NULL, &tv);
             if (FD_ISSET(sockfd, &fd_write)) {
                 is_connected = true;
             }

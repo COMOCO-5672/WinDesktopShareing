@@ -6,7 +6,6 @@
 #include "OverLay.h"
 #include "ScreenLive.h"
 #include <string>
-#include <Windows.h>
 
 class MainWindow :public OverLayCallBack {
 public:
