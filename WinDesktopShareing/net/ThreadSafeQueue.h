@@ -2,46 +2,118 @@
 #define THREAD_SAFE_QUEUE_H
 
 #include <mutex>
-#include <thread>
 #include <queue>
+#include <condition_variable>
 
-namespace xop {
-    template<typename T>
-    class ThreadSafeQueue {
-    public:
-        ThreadSafeQueue()
-        {
+namespace xop
+{
+    
+template<typename T>
+class ThreadSafeQueue
+{
+public:
+    ThreadSafeQueue()
+    {
+        
+    }
+    
+    ThreadSafeQueue(ThreadSafeQueue const& other)
+    {
+        std::lock_guard<std::mutex> lock(other._mutex);
+        _dataQueue = other._dataQueue;
+    }
 
-        }
+    ~ThreadSafeQueue()
+    {
+       
+    }
+            
+    void push(T value)
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        _dataQueue.push(value);
+        _dataCond.notify_one();
+    }
+        
+    bool waitAndPop(T& value)
+    {
+        std::unique_lock<std::mutex> lock(_mutex);
+        _dataCond.wait(lock);
+		if (_dataQueue.empty())
+		{
+			return false;
+		}
+        value = _dataQueue.front();
+        _dataQueue.pop();
+		return true;
+    }
 
-        ThreadSafeQueue(ThreadSafeQueue const &other)
-        {
-            LG lg(mutex_);
-            data_queue_ = other.data_queue_;
-        }
+    std::shared_ptr<T> waitAndPop()
+    {
+        std::unique_lock<std::mutex> lock(_mutex);
+        _dataCond.wait(lock);
+		if (_dataQueue.empty())
+		{
+			return nullptr;
+		}
+        std::shared_ptr<T> res(std::make_shared<T>(_dataQueue.front()));
+        _dataQueue.pop();
+        return res;
+    }
 
-        ~ThreadSafeQueue()
-        {
+    bool tryPop(T& value)
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        if(_dataQueue.empty())
+            return false;
+        
+        value = _dataQueue.front();
+        _dataQueue.pop();
+        
+        return true;
+    }
 
-        };
+    std::shared_ptr<T> tryPop()
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        if(_dataQueue.empty())
+            return std::shared_ptr<T>();
+        std::shared_ptr<T> res(std::make_shared<T>(_dataQueue.front()));
+        _dataQueue.pop();
+        return res;
+    }
 
-        void Push(T value)
-        {
+    size_t size() const
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        return _dataQueue.size();
+    }
 
-        }
+    bool empty() const
+    {
+        std::lock_guard<std::mutex> lock(_mutex);
+        return _dataQueue.empty();
+    }
 
-        bool WaitAndPop(T &value)
-        {
-            std::unique_lock<std::mutex> lock(mutex_);
-        }
+    void clear()
+    {		
+        std::lock_guard<std::mutex> lock(_mutex);
+        std::queue<T> empty;
+        _dataQueue.swap(empty);
+    } 
+    
+	void wake()
+	{
+		_dataCond.notify_one();
+	}
 
+private:	
+    mutable std::mutex _mutex;
+    std::queue<T> _dataQueue;
+    std::condition_variable _dataCond;    
+};
 
-    private:
-        using LG = std::lock_guard<std::mutex>;
-        std::mutex mutex_;
-        std::queue<T> data_queue_;
-        std::condition_variable data_cond_;
-    };
 }
 
-#endif
+#endif 
+
