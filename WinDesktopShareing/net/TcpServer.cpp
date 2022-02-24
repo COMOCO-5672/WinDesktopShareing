@@ -85,7 +85,7 @@ void TcpServer::AddConnection(SOCKET sockfd, TcpConnection::Ptr tcp_conn)
 void TcpServer::RemoveConnection(SOCKET sockfd)
 {
     std::lock_guard<std::mutex> locker(mutex_);
-    connections_.emplace(sockfd);
+    connections_.erase(sockfd);
 }
 
 
