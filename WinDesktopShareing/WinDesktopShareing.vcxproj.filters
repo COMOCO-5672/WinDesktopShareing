@@ -700,6 +700,9 @@
     <ClInclude Include="codec\H264Encoder.h">
       <Filter>codec</Filter>
     </ClInclude>
+    <ClInclude Include="net\ThreadSafeQueue.h">
+      <Filter>net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="net">

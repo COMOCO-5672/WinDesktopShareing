@@ -342,6 +342,7 @@
     <ClInclude Include="net\TcpConnection.h" />
     <ClInclude Include="net\TcpServer.h" />
     <ClInclude Include="net\TcpSocket.h" />
+    <ClInclude Include="net\ThreadSafeQueue.h" />
     <ClInclude Include="net\Timer.h" />
     <ClInclude Include="net\Timestamp.h" />
     <ClInclude Include="OverLay.h" />
