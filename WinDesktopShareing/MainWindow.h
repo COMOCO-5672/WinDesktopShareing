@@ -13,7 +13,7 @@ public:
     virtual ~MainWindow();
 
     bool Create();
-    void Destory();
+    void Destroy();
     bool IsWindow() const;
     void Resize();
 
@@ -27,9 +27,9 @@ private:
 
     virtual bool StartLive(int& event_type
                            , std::vector<std::string>& encoder_settings
-                           , std::vector<std::string>& live_settings) override;
+                           , std::vector<std::string>& live_settings) ;
 
-    virtual void StopLive(int event_type) override;
+    virtual void StopLive(int event_type) ;
 
     SDL_Window *window_{ nullptr };
     HWND        window_handle_{ nullptr };

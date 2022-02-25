@@ -77,7 +77,7 @@ int main(int argc, char **argv)
         SDL_RemoveTimer(timer_id);
     }
 
-    window.Destory();
-    ScreenLive::Instance().Destory();
+    window.Destroy();
+    ScreenLive::Instance().Destroy();
     return 0;
 }

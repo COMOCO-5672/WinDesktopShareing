@@ -3,7 +3,16 @@
 
 MainWindow::MainWindow()
 {
+    window_width_ = 960;
+    window_height_ = 740;
+    video_width_ = window_width_;
+    video_height_ = window_height_ - kMinOverlayHeight;
+    overlay_width_ = window_width_;
+    overlay_height_ = kMinOverlayHeight;
 
+    avconfig_.bitrate_bps = 4000000; // video bitrate
+    avconfig_.framerate = 25;        // video framerate
+    avconfig_.codec = "";  // hardware encoder: "h264_nvenc";    
 }
 
 MainWindow::~MainWindow()
@@ -14,7 +23,7 @@ MainWindow::~MainWindow()
 bool MainWindow::Create()
 {
     static std::once_flag init_flag;
-    std::call_once(init_flag, [=] {
+    std::call_once(init_flag, [=]() {
         SDL_assert(SDL_Init(SDL_INIT_EVERYTHING) == 0);
     });
 
@@ -39,7 +48,7 @@ bool MainWindow::Create()
     }
 
     if (!Init()) {
-        Destory();
+        Destroy();
         return false;
     }
 
@@ -52,7 +61,7 @@ bool MainWindow::Create()
     return (window_handle_ && window_);
 }
 
-void MainWindow::Destory()
+void MainWindow::Destroy()
 {
     if (window_) {
         Clear();
@@ -197,7 +206,7 @@ bool MainWindow::UpdateARGB(const uint8_t* data, uint32_t width, uint32_t height
         return false;
     }
 
-    if (texture_format_ != SDL_PIXELFORMAT_ABGR8888
+    if (texture_format_ != SDL_PIXELFORMAT_ARGB8888
         || (texture_width_ != width) || (texture_height_ != height)) {
         if (texture_) {
             SDL_DestroyTexture(texture_);
@@ -206,11 +215,11 @@ bool MainWindow::UpdateARGB(const uint8_t* data, uint32_t width, uint32_t height
     }
 
     if (!texture_) {
-        texture_ = SDL_CreateTexture(renderer_, SDL_PIXELFORMAT_ABGR8888,
+        texture_ = SDL_CreateTexture(renderer_, SDL_PIXELFORMAT_ARGB8888,
                                      SDL_TEXTUREACCESS_STREAMING, width, height);
 
         SDL_assert(texture_ != nullptr);
-        texture_format_ = SDL_PIXELFORMAT_ABGR8888;
+        texture_format_ = SDL_PIXELFORMAT_ARGB8888;
         texture_width_ = width;
         texture_height_ = height;
     }
@@ -230,6 +239,7 @@ bool MainWindow::UpdateARGB(const uint8_t* data, uint32_t width, uint32_t height
         SDL_RenderClear(renderer_);
 
         SDL_Rect rect = { 0,0,video_width_,video_height_ };
+		SDL_RenderCopy(renderer_, texture_, nullptr, &rect);
         if (overlay_) {
             if (!debug_info_text_.empty()) {
                 overlay_->SetDebugInfo(debug_info_text_);
@@ -258,7 +268,7 @@ bool MainWindow::StartLive(int& event_type, std::vector<std::string>& encoder_se
     if (av_config != avconfig_) {
         ScreenLive::Instance().StopLive(SCREEN_LIVE_RTSP_SERVER);
         ScreenLive::Instance().StopLive(SCREEN_LIVE_RTSP_PUSHER);
-        ScreenLive::Instance().StopLive(SCREEN_LIVE_RTSP_PUSHER);
+        ScreenLive::Instance().StopLive(SCREEN_LIVE_RTMP_PUSHER);
 
         overlay_->SetLiveState(EVENT_TYPE_RTSP_SERVER, false);
         overlay_->SetLiveState(EVENT_TYPE_RTSP_PUSHER, false);

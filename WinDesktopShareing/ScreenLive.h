@@ -58,7 +58,7 @@ public:
     ~ScreenLive();
 
     bool Init(AVConfig &config);
-    void Destory();
+    void Destroy();
     bool IsInitialized() { return is_initialized_; }
 
     int StartCapture();
@@ -101,8 +101,8 @@ private:
     // encoder
     H264Encoder h264_encoder_;
     AACEncoder aac_encoder_;
-    std::shared_ptr<std::thread> encode_video_thread_{ nullptr };
-    std::shared_ptr<std::thread> encode_audio_thread_{ nullptr };
+    std::shared_ptr<std::thread> encode_video_thread_ = nullptr ;
+    std::shared_ptr<std::thread> encode_audio_thread_ = nullptr ;
 
     // stream
     xop::MediaSessionId media_session_id_ = 0;

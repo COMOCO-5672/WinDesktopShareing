@@ -80,7 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(projectdir)..\libs\gl3w;$(projectdir)..\libs\ffmpeg\include;$(projectdir)..\libs\glfw\include;$(projectdir)..\libs\SDL2\include;$(ProjectDir);$(ProjectDir)capture;$(ProjectDir)net;$(ProjectDir)imgui;$(ProjectDir)codec;$(ProjectDir)codec\avcodec;$(ProjectDir)codec\nvcodec;$(ProjectDir)codec\qsvcodec\include\msdk\include;$(ProjectDir)codec\qsvcodec\include;$(ProjectDir)libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;NOMINMAX;__WINDOWS_WASAPI__</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -232,8 +232,10 @@
     <ClCompile Include="net\BufferReader.cpp" />
     <ClCompile Include="net\BufferWriter.cpp" />
     <ClCompile Include="net\Channel.cpp" />
+    <ClCompile Include="net\EpollTaskScheduler.cpp" />
     <ClCompile Include="net\EventLoop.cpp" />
     <ClCompile Include="net\Logger.cpp" />
+    <ClCompile Include="net\MemoryManager.cpp" />
     <ClCompile Include="net\NetInterface.cpp" />
     <ClCompile Include="net\Pipe.cpp" />
     <ClCompile Include="net\SelectTaskScheduler.cpp" />
@@ -329,9 +331,11 @@
     <ClInclude Include="net\BufferReader.h" />
     <ClInclude Include="net\BufferWriter.h" />
     <ClInclude Include="net\Channel.h" />
+    <ClInclude Include="net\EpollTaskScheduler.h" />
     <ClInclude Include="net\EventLoop.h" />
     <ClInclude Include="net\log.h" />
     <ClInclude Include="net\Logger.h" />
+    <ClInclude Include="net\MemoryManager.h" />
     <ClInclude Include="net\NetInterface.h" />
     <ClInclude Include="net\Pipe.h" />
     <ClInclude Include="net\RingBuffer.h" />

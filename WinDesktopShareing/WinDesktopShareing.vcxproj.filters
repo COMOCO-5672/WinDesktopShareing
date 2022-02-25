@@ -392,6 +392,12 @@
     <ClCompile Include="codec\H264Encoder.cpp">
       <Filter>codec</Filter>
     </ClCompile>
+    <ClCompile Include="net\EpollTaskScheduler.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\MemoryManager.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h" />
@@ -701,6 +707,12 @@
       <Filter>codec</Filter>
     </ClInclude>
     <ClInclude Include="net\ThreadSafeQueue.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\EpollTaskScheduler.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\MemoryManager.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

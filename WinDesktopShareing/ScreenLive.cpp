@@ -1,4 +1,5 @@
 ﻿#include "ScreenLive.h"
+#include "NetInterface.h"
 #include "net/Timestamp.h"
 #include "xop/RtspServer.h"
 #include "xop/H264Parser.h"
@@ -14,7 +15,7 @@ ScreenLive::ScreenLive() :event_loop_(new xop::EventLoop)
 
 ScreenLive::~ScreenLive()
 {
-    Destory();
+    Destroy();
 }
 
 ScreenLive &ScreenLive::Instance()
@@ -63,7 +64,7 @@ std::string ScreenLive::GetStatusInfo()
 bool ScreenLive::Init(AVConfig& config)
 {
     if (is_initialized_)
-        Destory();
+        Destroy();
 
     if (StartCapture() < 0)
         return false;
@@ -75,13 +76,13 @@ bool ScreenLive::Init(AVConfig& config)
     return true;
 }
 
-void ScreenLive::Destory()
+void ScreenLive::Destroy()
 {
     {
         std::lock_guard<std::mutex> locker(mutex_);
         if (rtsp_pusher_ != nullptr && rtsp_pusher_->IsConnected()) {
             rtsp_pusher_->Close();
-            rtmp_pusher_ = nullptr;
+            rtsp_pusher_ = nullptr;
         }
 
         if (rtmp_pusher_ != nullptr && rtmp_pusher_->IsConnected()) {
@@ -223,6 +224,7 @@ void ScreenLive::StopLive(int type)
             rtsp_clients_.clear();
             printf("RTSP Server stop");
         }
+        break;
     case SCREEN_LIVE_RTSP_PUSHER:
         if (rtsp_pusher_ != nullptr) {
             rtsp_pusher_->Close();
@@ -373,8 +375,8 @@ int ScreenLive::StartEncoder(AVConfig& config)
     }
 
     is_encoder_started_ = true;
-    //encode_video_thread_.reset(new std::thread(&ScreenLive::EncoderVideo, this));
-    //encode_audio_thread_.reset(new std::thread(&ScreenLive::EncoderAudio), this);
+    encode_video_thread_.reset(new std::thread(&ScreenLive::EncoderVideo, this));
+    encode_audio_thread_.reset(new std::thread(&ScreenLive::EncoderAudio, this));
 
     return 0;
 }
@@ -484,7 +486,7 @@ void ScreenLive::PushVideo(const uint8_t* data, uint32_t size, uint32_t timestam
 {
     xop::AVFrame video_frame(size);
     video_frame.size = size - 4;
-    video_frame.type = IsKeyFrame(data, size);
+    video_frame.type = IsKeyFrame(data, size) ? xop::VIDEO_FRAME_I : xop::VIDEO_FRAME_P;
     video_frame.timestamp = timestamp;
     memcpy(video_frame.buffer.get(), data + 4, size - 4);
 
