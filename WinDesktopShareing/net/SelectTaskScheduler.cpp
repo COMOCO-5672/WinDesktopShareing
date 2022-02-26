@@ -116,7 +116,7 @@ bool SelectTaskScheduler::HandleEvent(int timeout)
         FD_ZERO(&fd_read_backup_);
         memcpy(&fd_read_backup_, &fd_read, sizeof(fd_set));
     } else {
-        memcpy(&fd_write, &fd_write_backup_, sizeof(fd_set));
+        memcpy(&fd_read, &fd_read_backup_, sizeof(fd_set));
     }
 
     if (fd_write_reset) {

@@ -1,6 +1,8 @@
 ﻿#include "MainWindow.h"
 #include <mutex>
 
+#pragma execution_character_set("utf-8")
+
 MainWindow::MainWindow()
 {
     window_width_ = 960;
@@ -37,7 +39,7 @@ bool MainWindow::Create()
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
     int window_flag = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE;
-    window_ = SDL_CreateWindow("Screen Live", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED
+    window_ = SDL_CreateWindow("小焦的录屏软件", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED
                                , window_width_, window_height_, window_flag);
 
     SDL_GLContext gl_context = SDL_GL_CreateContext(window_);

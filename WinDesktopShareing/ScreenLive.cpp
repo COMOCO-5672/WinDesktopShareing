@@ -45,7 +45,7 @@ std::string ScreenLive::GetStatusInfo()
     }
 
     if (rtsp_server_ != nullptr) {
-        info + "RTSP Server (connections): " + std::to_string(rtsp_clients_.size()) + " \n\n";
+        info += "RTSP Server (connections): " + std::to_string(rtsp_clients_.size()) + " \n\n";
     }
 
     if (rtsp_pusher_ != nullptr) {
@@ -222,7 +222,7 @@ void ScreenLive::StopLive(int type)
             rtsp_server_->Stop();
             rtsp_server_ = nullptr;
             rtsp_clients_.clear();
-            printf("RTSP Server stop");
+            printf("RTSP Server stop. \n");
         }
         break;
     case SCREEN_LIVE_RTSP_PUSHER:

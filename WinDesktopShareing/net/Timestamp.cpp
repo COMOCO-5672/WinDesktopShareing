@@ -1,7 +1,10 @@
 ﻿#include "Timestamp.h"
+#include <iostream>
+#include <iomanip>  
 #include <sstream>
 
 using namespace xop;
+using namespace std;
 using namespace std::chrono;
 
 std::string Timestamp::Localtime()
@@ -10,7 +13,7 @@ std::string Timestamp::Localtime()
     auto now = system_clock::now();
     time_t tt = system_clock::to_time_t(now);
 
-#if defined(WIN32) || defined(__WIN32)
+#if defined(WIN32) || defined(_WIN32)
     struct tm tm;
     localtime_s(&tm, &tt);
     stream << std::put_time(&tm, "%F %T");

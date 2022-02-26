@@ -1,4 +1,5 @@
 ﻿#include "SocketUtil.h"
+#include "Socket.h"
 
 using namespace xop;
 
@@ -118,7 +119,7 @@ std::string SocketUtil::GetSocketIp(SOCKET sockfd)
     return str;
 }
 
-int SocketUtil::GetSocketAddr(SOCKET sockfd, sockaddr_in* addr)
+int SocketUtil::GetSocketAddr(SOCKET sockfd, struct sockaddr_in* addr)
 {
     socklen_t addlen = sizeof(struct  sockaddr_in);
     return getsockname(sockfd, (struct sockaddr*)addr, &addlen);
@@ -137,7 +138,7 @@ uint16_t SocketUtil::GetPeerPort(SOCKET sockfd)
 int SocketUtil::GetPeerAddr(SOCKET sockfd, struct sockaddr_in *addr)
 {
     socklen_t addrlen = sizeof(struct sockaddr_in);
-    return getpeername(sockfd, (struct sockaddr *)&addr, &addrlen);
+    return getpeername(sockfd, (struct sockaddr *)addr, &addrlen);
 }
 
 void SocketUtil::Close(SOCKET sockfd)
