@@ -189,7 +189,8 @@ bool OverLay::Copy()
     ImGui::SetCursorPos(ImVec2(start_x + 105, start_y - 3));
     ImGui::RadioButton("x264", &encoder_index_, 1); ImGui::SameLine(0, 10);
     ImGui::RadioButton("nvenc", &encoder_index_, 2); ImGui::SameLine(0, 10);
-    ImGui::RadioButton("qsv", &encoder_index_, 3);
+    ImGui::RadioButton("qsv", &encoder_index_, 3); ImGui::SameLine(0, 10);
+    ImGui::RadioButton("amf", &encoder_index_, 4); 
 
     ImGui::SetCursorPos(ImVec2(start_x + 100, start_y + 28));
     ImGui::Text(" framerate:");
@@ -292,6 +293,8 @@ void OverLay::NotifyEvent(int event_type)
         encoder_settings[0] = std::string("h264_nvenc");
     } else if (encoder_index_ == 3) {
         encoder_settings[0] = std::string("h264_qsv");
+    } else if(encoder_index_ == 4 ) {
+        encoder_settings[0] = std::string("h264_amf");
     }
 
     encoder_settings[1] = std::string(encoder_framerate_);

@@ -14,6 +14,7 @@ static void OnPaint(void *param)
         if (ScreenLive::Instance().GetScreenImage(bgra_image, width, height)) {
             std::string status_info = ScreenLive::Instance().GetStatusInfo();
             window->SetDebugInfo(status_info);
+            // 调用SDL渲染
             window->UpdateARGB(&bgra_image[0], width, height);
         }
     }
