@@ -120,6 +120,7 @@ bool ScreenLive::StartLive(int type, LiveConfig& config)
             return false;
 
         xop::MediaSession *session = xop::MediaSession::CreateNew(config.suffix);
+
         session->AddSource(xop::channel_0, xop::H264Source::CreateNew());
         session->AddSource(xop::channel_1, xop::AACSource::CreateNew(samplerate, channels, false));
         session->AddNotifyConnectedCallback([this](xop::MediaSessionId, std::string peer_ip, uint16_t peer_port) {
@@ -414,6 +415,7 @@ bool ScreenLive::IsKeyFrame(const uint8_t* data, uint32_t size)
     return false;
 }
 
+// 视频编码线程
 void ScreenLive::EncoderVideo()
 {
     static xop::Timestamp encoding_ts, update_ts;

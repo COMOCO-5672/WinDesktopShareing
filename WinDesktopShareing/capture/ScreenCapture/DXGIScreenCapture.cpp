@@ -1,4 +1,4 @@
-#ifndef _CRT_SECURE_NO_WARNINGS
+﻿#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
@@ -94,7 +94,7 @@ bool DXGIScreenCapture::Init(int display_index)
 
 	hr = dxgiOutput1->DuplicateOutput(d3d11_device_.Get(), dxgi_output_duplication_.GetAddressOf());
 	if (FAILED(hr)) {
-		/* 0x887a0004: NVIDIA�������-->ȫ������--��ѡͼ�δ�����(�Զ�ѡ��) */
+		/* 0x887a0004: NVIDIA控制面板-->全局设置--首选图形处理器(自动选择) */
 		printf("[DXGIScreenCapture] Failed to get duplicate output.\n");
 		Destroy();
 		return false;
@@ -204,6 +204,7 @@ int DXGIScreenCapture::StartCapture()
 
 	is_started_ = true;
 	AquireFrame();
+    // 循环从D3D资源中获取显示器frame，将资源拷贝给指针，另一线程从指针中获取frame信息
 	thread_ptr_.reset(new std::thread([this] {
 		while (is_started_) {
 			std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -226,6 +227,7 @@ int DXGIScreenCapture::StopCapture()
 	return 0;
 }
 
+// 从D3D资源中获取显示器frame
 int DXGIScreenCapture::AquireFrame()
 {
 	Microsoft::WRL::ComPtr<IDXGIResource> dxgi_resource;
@@ -315,6 +317,7 @@ int DXGIScreenCapture::AquireFrame()
 	return 0;
 }
 
+// 从Imageptr指针中获取frame信息 并将信息callback回上层
 bool DXGIScreenCapture::CaptureFrame(std::vector<uint8_t>& bgra_image, uint32_t& width, uint32_t& height)
 {
 	std::lock_guard<std::mutex> locker(mutex_);
