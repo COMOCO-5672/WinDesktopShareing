@@ -126,7 +126,7 @@ AVPacketPtr AACEncoder::Encode(const uint8_t* pcm, int samples)
 	}
 	
 	AVPacketPtr av_packet(av_packet_alloc(), [](AVPacket* ptr) {av_packet_free(&ptr);});
-	av_init_packet(av_packet.get());
+	//av_init_packet(av_packet.get());
 
 	ret = avcodec_receive_packet(codec_context_, av_packet.get());
 	if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) {

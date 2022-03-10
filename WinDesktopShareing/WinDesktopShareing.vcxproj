@@ -95,12 +95,14 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(projectdir)..\libs\ffmpeg\include;$(projectdir)..\libs\glfw\include;$(projectdir)..\libs\SDL2\include;$(projectdir)..\libs\gl3w\GL;$(projectdir)libyuv\include;$(projectdir)capture;$(projectdir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectdir)..\libs\gl3w;$(projectdir)..\libs\ffmpeg\include;$(projectdir)..\libs\glfw\include;$(projectdir)..\libs\SDL2\include;$(ProjectDir);$(ProjectDir)capture;$(ProjectDir)net;$(ProjectDir)imgui;$(ProjectDir)codec;$(ProjectDir)codec\avcodec;$(ProjectDir)codec\nvcodec;$(ProjectDir)codec\qsvcodec\include\msdk\include;$(ProjectDir)codec\qsvcodec\include;$(ProjectDir)libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\glfw\lib-vc2010-64;$(ProjectDir)..\libs\SDL2\lib\x64;$(ProjectDir)..\libs\ffmpeg\lib\x64\windows;$(ProjectDir)..\libs\portaudio\lib\debug;$(ProjectDir)..\libs\screen_capture\lib\debug;$(ProjectDir)..\libs\screen_capture_lite\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;glfw3.lib;SDL2.lib;dxgi.lib;d3d11.lib;d3d9.lib;dxva2.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

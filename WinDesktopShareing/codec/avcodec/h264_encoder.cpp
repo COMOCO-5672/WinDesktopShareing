@@ -163,7 +163,7 @@ AVPacketPtr H264Encoder::Encode(const uint8_t *image, uint32_t width, uint32_t h
 	AVPacketPtr av_packet(av_packet_alloc(), [](AVPacket* ptr) {
 		av_packet_free(&ptr);
 	});
-	av_init_packet(av_packet.get());
+	//av_init_packet(av_packet.get());
 
 	int ret = avcodec_receive_packet(codec_context_, av_packet.get());
 	if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) {
